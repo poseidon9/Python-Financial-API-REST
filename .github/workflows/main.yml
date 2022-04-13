@@ -21,7 +21,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::456354563558:user/poseidon9
+          role-to-assume: arn:aws:iam::456354563558:role/AdminRole
           aws-region: us-east-1
 
       - name: Upload package to S3 bucket
