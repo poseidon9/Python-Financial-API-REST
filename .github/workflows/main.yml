@@ -19,9 +19,11 @@ jobs:
         run: zip -r deploy_package.zip ./
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@05b148adc31e091bafbaf404f745055d4d3bc9d2
         with:
-          role-to-assume: arn:aws:iam::456354563558:role/github_actions
+          #role-to-assume: arn:aws:iam::456354563558:role/github_actions
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: "us-east-1"
 
       - name: Upload package to S3 bucket
