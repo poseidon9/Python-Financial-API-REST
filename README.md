@@ -22,8 +22,9 @@ TO-DO LIST:
 		Serialization  
 	Dockerization ❌
 	Pipeline  
-		Basic ✔  
+		Basic(Lambda✔) ❌  
 		Checking unit tests  
 	AWS  
 		Lambdas ❌  
-		API GATEWAY 
+		API GATEWAY
+		Elastic Beanstalk
