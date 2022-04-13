@@ -1,30 +1,41 @@
-name: Deploy lambda 
+name: Deploy S3 to EB
 
 on:
   push:
-    branches:
-      - master
-
+    branches: [ master ]
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      
     steps:
-    - uses: actions/checkout@master
-    - name: Deploy code to Lambda
-      uses: denzalman/lambda-python-action@v1.1.0
-      with:
-        lambda_layer_arn: 'arn:aws:lambda:us-east-1:456354563558:function:Python-Financial-API'
-        lambda_function_name: 'Python-Financial-API'
-        lambda_region: 'us-east-1'
-        requirements_txt: 'requirements.txt'
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    - name: Install Dependencies
-      run: |
-        source test/Scripts/activate
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Tests
-      run: |
-        python app/manage.py test
+      - uses: actions/checkout@v2
+
+      - name: Create ZIP deployment package
+        run: zip -r deploy_package.zip ./
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@05b148adc31e091bafbaf404f745055d4d3bc9d2
+        with:
+          #role-to-assume: arn:aws:iam::456354563558:role/github_actions
+          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: "us-east-1"
+
+      - name: Upload package to S3 bucket
+        run: aws s3 cp deploy_package.zip s3://python-financial-api/
+
+      - name: Create new ElasticBeanstalk Application Version
+        run: |
+          aws elasticbeanstalk create-application-version \
+          --application-name Python-Financial-API \
+          --source-bundle S3Bucket="python-financial-api",S3Key="deploy_package.zip" \
+          --version-label "ver-${{ github.sha }}" \
+          --description "commit-sha-${{ github.sha }}"
+
+      - name: Deploy new ElasticBeanstalk Application Version
+        run: aws elasticbeanstalk update-environment --environment-name Pythonfinancialapi-env --version-label "ver-${{ github.sha }}"
