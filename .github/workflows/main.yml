@@ -22,7 +22,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: Install Dependencies
       run: |
-        ./test/Scripts/activate
+        source test/Scripts/activate
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Tests
