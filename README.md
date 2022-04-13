@@ -20,10 +20,10 @@ TO-DO LIST:
 		Models  
 		Views  
 		Serialization  
-	Dockerization  
+	Dockerization ❌
 	Pipeline  
 		Basic ✔  
-		Checkin unit tests
+		Checking unit tests  
 	AWS  
-		Lambdas ✔  
-		API GATEWAY
+		Lambdas ❌  
+		API GATEWAY 
