@@ -3,15 +3,15 @@ name: Deploy S3 to EB
 on:
   push:
     branches: [ master ]
-
-permissions:
-  id-token: write
-  contents: read
   
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+      contents: read
+      
     steps:
       - uses: actions/checkout@v2
 
@@ -19,7 +19,7 @@ jobs:
         run: zip -r deploy_package.zip ./
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::456354563558:user/poseidon9
           aws-region: us-east-1
