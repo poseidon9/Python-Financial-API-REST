@@ -28,6 +28,3 @@ jobs:
     - name: Run Tests
       run: |
         python app/manage.py test
-    - name: I Know I Know
-      run: |
-        python app/manage.py runserver
