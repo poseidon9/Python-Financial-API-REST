@@ -7,7 +7,7 @@ Extras:
 All models are Serialized: Currently there are only 2 models Users & Companies, Users being the default Django auth model which is currently useless as it's for an optional auth.
 When a Company is made it needs to be correlated if it has a valid symbol according to the NY Stock Exchange using yFinance.
 Expected errors will be logged into error_log.txt
-Testing Git Hub Actions Pipeline Deployment
+Testing Git Hub Actions Pipeline Deployment, try 2
 
 TO-DO LIST:
 CRUD ✔
