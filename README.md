@@ -15,7 +15,7 @@ Pipeline with Git Hub Actions.
 TO-DO LIST:  
 ----CRUD ✔  
 ----NY Stock Exchange Symbol check:  
---------Basic ✔  
+--------Basic ✔   
 --------Optimized  
 ----Errors Logging ✔  
 ----Unit Testing:  
