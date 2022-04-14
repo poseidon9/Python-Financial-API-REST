@@ -16,8 +16,11 @@ import yfinance as yahooFinance
 def errorLog(error_type, error_msg):
 	#append to file without worrying about closing
 	with open("error_log.txt", 'a') as error_file:
+		print(error_msg)
 		error_file.write(datetime.now().strftime("%m/%d/%Y, %H:%M:%S") + ":   " + error_type + "\n")
 		for error_key in error_msg:
+			print(error_key)
+			print(error_msg[error_key])
 			error_file.write(error_key + ": " + error_msg[error_key][0] + "\n")
 		error_file.write("\n")
 
