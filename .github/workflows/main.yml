@@ -20,3 +20,9 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: Install Node Packages
+      run: |
+        npm install serverless
+        npm install
+    - name: Run serverless
+      run: serverless deploy -s production
