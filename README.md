@@ -25,9 +25,10 @@ TO-DO LIST:
 --------Serialization  
 ----Dockerization ❌
 ----Pipeline:
---------Basic(Lambda✔) ❌  
+--------Basic(Lambda✔, EB ❌) EC2 ❌  
 --------Checking unit tests  
 ----AWS:  
 --------Lambdas ❌  
-----API GATEWAY
-----Elastic Beanstalk
+--------API GATEWAY ❌
+--------Elastic Beanstalk ❌
+--------EC2 ✔
