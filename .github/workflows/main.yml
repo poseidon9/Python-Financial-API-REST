@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Deploy code to Lambda
-      uses: denzalman/lambda-python-action@master
+      uses: denzalman/lambda-python-action@v1.1.0
       with:
         lambda_layer_arn: 'arn:aws:lambda:us-east-1:456354563558:function:Python-Financial-API'
         lambda_function_name: 'Python-Financial-API'
